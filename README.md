@@ -1,15 +1,18 @@
-# React Native Router
+React Native Router
+===================
 Awesome navigation for your React Native app.
 
 ![Twitter navigation](http://tristanedwards.me/u/react-native-router/native-router.gif)
 
-# Install
+Install
+-------
 
 Make sure that you are in your React Native project directory and run:
 
 ```npm install react-native-router --save```
 
-# Usage
+Usage
+-----
 
 ```javascript
 var Router = require('react-native-router');
@@ -73,7 +76,8 @@ var HelloPage = React.createClass({
 Now, when you click on "Next page please!", it will go to the next page (which in this case is still HelloPage but with a new title). Keep in mind that ```this.props.toRoute()``` needs to be called from one of the top-level routes, therefore, if your link is deeply nested within multiple components, you need to make sure that the action "bubbles up" until it reaches the parent route, which in turn calls ```this.props.toRoute()```.
 
 
-# A more advanced example: Twitter app
+A more advanced example: Twitter app
+------------------------------------
 
 To see more of the router in action, you can check out the Twitter example app that comes with the package. Just make sure that you first drag all the images from ```node_modules/react-native-router/twitter-example/images``` to your project's Images.xcassets:
 
@@ -91,23 +95,30 @@ var {
 AppRegistry.registerComponent('routerTest', () => TwitterApp);
 ```
 
-# Configurations
+Configurations
+--------------
 
-The *<Router />* object used to initialize the navigation can take the following props:
-- **firstRoute** (required): A React class corresponding to the first page of your navigation
-- **headerStyle**: Used to set the default headerStyle. You'll probably want to change the backgroundColor.
-- **backButtonComponent**: By default, the navigation bar will display a simple "Back" text for the back button. To change this, you can specify your own backButton component (like in the Twitter app).
-- **rightCorner**: If you have the same occuring action buttons on the right side of your navigation bar (like the Twitter "Compose"-button), you can specify a component for that view.
+The **<Router />** object used to initialize the navigation can take the following props:
+- `firstRoute` (required): A React class corresponding to the first page of your navigation
+- `headerStyle`: Used to set the default headerStyle. You'll probably want to change the backgroundColor.
+- `backButtonComponent`: By default, the navigation bar will display a simple "Back" text for the back button. To change this, you can specify your own backButton component (like in the Twitter app).
+- `rightCorner`: If you have the same occuring action buttons on the right side of your navigation bar (like the Twitter "Compose"-button), you can specify a component for that view.
 
-*toRoute()* takes one parameter (a JavaScript object) which can have the following keys:
-- **name**: The name of your route, which will be shown as the title of the navigation bar unless it is changed.
-- **component** (required): The React class corresponding to the view you want to render.
-- **leftCorner**: Specify a component to render on the left side of the navigation bar (like the "Add people"-button on the first page of the Twitter app)
-- **rightCorner**: Specify a component to render on the right side of the navigation bar
-- **titleComponent**: Specify a component to replace the title. This could for example be your logo (as in the first page of the Instagram app)
-- **headerStyle**: change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
+The **toRoute()** prop function takes one parameter (a JavaScript object) which can have the following keys:
+- `name`: The name of your route, which will be shown as the title of the navigation bar unless it is changed.
+- `component` (required): The React class corresponding to the view you want to render.
+- `leftCorner`: Specify a component to render on the left side of the navigation bar (like the "Add people"-button on the first page of the Twitter app)
+- `rightCorner`: Specify a component to render on the right side of the navigation bar
+- `titleComponent`: Specify a component to replace the title. This could for example be your logo (as in the first page of the Instagram app)
+- `headerStyle`: change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
 
 
-# Todos
+Todos
+-----
 When swiping from left to right to go back, it would be nice if the navigation bar's opacity gradually changed with the user's finger position. (See [Issue #1](https://github.com/t4t5/react-native-router/issues/1))
+
+Questions?
+---------
+
+If something is unclear or if you just want to say hi, feel free to [follow me on Twitter](https://twitter.com/t4t5)!
 
