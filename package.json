@@ -12,13 +12,13 @@
   },
   "keywords": [
     "react",
-    "native",
+    "react-component",
+    "react-native",
     "ios",
-    "navigation",
-    "bar",
+    "navigation"
+    "navigation-bar",
     "navbar",
-    "router",
-    "header"
+    "router"
   ],
   "author": "Tristan Edwards <tristan.edwards@me.com> (http://tristanedwards.me)",
   "license": "MIT",
