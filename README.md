@@ -95,7 +95,7 @@ AppRegistry.registerComponent('routerTest', () => TwitterApp);
 
 The *<Router />* object used to initialize the navigation can take the following props:
 - **firstRoute** (required): A React class corresponding to the first page of your navigation
-- **headerStyle: Used to set the default headerStyle. You'll probably want to change the backgroundColor.
+- **headerStyle**: Used to set the default headerStyle. You'll probably want to change the backgroundColor.
 - **backButtonComponent**: By default, the navigation bar will display a simple "Back" text for the back button. To change this, you can specify your own backButton component (like in the Twitter app).
 - **rightCorner**: If you have the same occuring action buttons on the right side of your navigation bar (like the Twitter "Compose"-button), you can specify a component for that view.
 
