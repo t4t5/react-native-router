@@ -114,6 +114,7 @@ var Router = React.createClass({
             currentRoute={this.state.route}
             backButtonComponent={this.props.backButtonComponent}
             rightCorner={this.props.rightCorner}
+            titleStyle={this.props.titleStyle}
             toRoute={this.onForward}
             toBack={this.onBack}
             customAction={this.customAction}
