@@ -89,6 +89,7 @@ var Router = React.createClass({
           index={route.index}
           toRoute={goForward}
           toBack={goBackwards}
+          route={route}
         />
       </View>
     )
