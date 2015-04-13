@@ -35,6 +35,10 @@ var NavBarContainer = React.createClass({
     this.props.toRoute(route, this.props.navigator);
   },
 
+  customAction: function(opts) {
+    this.props.customAction(opts);
+  },
+
   // We render both the current and the previous navbar (for animation)
   render: function() {
     return (
@@ -51,6 +55,7 @@ var NavBarContainer = React.createClass({
           rightCorner={this.props.rightCorner}
           goBack={this.goBack}
           goForward={this.goForward}
+          customAction={this.customAction}
         />
       </View>
     )

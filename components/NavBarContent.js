@@ -22,16 +22,6 @@ var NavBarContent = React.createClass({
     };
   },
 
-  goBack: function() {
-    if (!this.props.willDisappear) {
-      this.props.goBack();
-    }
-  },
-
-  goForward: function(route) {
-    this.props.goForward(route);
-  },
-
   componentWillReceiveProps: function(newProps) {
     if (newProps.route !== this.props.route) {
       this.setState({
@@ -48,20 +38,41 @@ var NavBarContent = React.createClass({
     }
   },
 
+  goBack: function() {
+    if (!this.props.willDisappear) {
+      this.props.goBack();
+    }
+  },
+
+  goForward: function(route) {
+    this.props.goForward(route);
+  },
+
+  customAction: function(opts) {
+    this.props.customAction(opts);
+  },
+
   render() {
     var transitionStyle = { 
       opacity: this.getTweeningValue('opacity'),
     };
 
-    var leftCorner, rightCorner, titleComponent;
+    var leftCorner;
+    var rightCorner;
+    var titleComponent;
+    
+
+    /**
+     * Set leftCorner
+     * (defaults to "Back"-button for routes with index > 0)
+     */
     var leftCornerContent;
 
-    // Set left corner (defaults to "Back"-button for routes with index > 0)
     if (this.props.route.leftCorner) {
       var LeftCorner = this.props.route.leftCorner;
-      leftCornerContent = <LeftCorner toRoute={this.goForward} />
+      leftCornerContent = <LeftCorner toRoute={this.goForward} action={this.customAction} />;
     } else if (this.props.route.index > 0) {
-      leftCornerContent = <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />
+      leftCornerContent = <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />;
     }
 
     leftCorner = (
@@ -70,33 +81,40 @@ var NavBarContent = React.createClass({
       </View>
     );
 
-    // Set rightCorner
+    /**
+     * Set rightCorner
+     */
+    var rightCornerContent;
+
     if (this.props.route.rightCorner || this.props.rightCorner) {
       var RightCorner = this.props.route.rightCorner || this.props.rightCorner;
-      rightCorner = (
-        <View style={[styles.corner, styles.alignRight]}>
-          <RightCorner toRoute={this.goForward} />
-        </View>
-      );
-    } else {
-      rightCorner = <View style={[styles.corner, styles.alignRight]} />;
+      rightCornerContent = <RightCorner toRoute={this.goForward} action={this.customAction} />;
     }
 
-    // Set title message
+    rightCorner = (
+      <View style={[styles.corner, styles.alignRight]}>
+        {rightCornerContent}
+      </View>
+    );
+
+    /**
+     * Set title message
+     */
+    var titleContent;
+
     if (this.props.route.titleComponent) {
       var TitleComponent = this.props.route.titleComponent;
-      titleComponent = (
-        <View>
-          <TitleComponent />
-        </View>
-      );
+      titleContent = <TitleComponent />;
     } else {
-      titleComponent = (
-        <View>
-          <Text style={styles.navbarText}>{this.props.route.name}</Text>
-        </View>
-      )
+      titleContent = <Text style={styles.navbarText}>{this.props.route.name}</Text>;
     }
+
+    titleComponent = (
+      <View>
+        {titleContent}
+      </View>
+    );
+
 
     return (
       <View style={[styles.navbar, this.props.route.headerStyle, transitionStyle]}>
@@ -104,7 +122,7 @@ var NavBarContent = React.createClass({
         {titleComponent}
         {rightCorner}
       </View>
-    )
+    );
   }
 });
 

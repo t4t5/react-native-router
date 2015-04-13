@@ -40,6 +40,10 @@ var Router = React.createClass({
     navigator.push(route);
   },
 
+  customAction: function(opts) {
+    this.props.customAction(opts);
+  },
+
   renderScene: function(route, navigator) {
 
     var goForward = function(route) {
@@ -104,13 +108,14 @@ var Router = React.createClass({
         initialRoute={this.props.firstRoute}
         navigationBar={
           <NavBarContainer
-            navigator={navigator} 
-            toRoute={this.onForward}
-            toBack={this.onBack}
-            currentRoute={this.state.route}
             style={this.props.headerStyle}
+            navigator={navigator} 
+            currentRoute={this.state.route}
             backButtonComponent={this.props.backButtonComponent}
             rightCorner={this.props.rightCorner}
+            toRoute={this.onForward}
+            toBack={this.onBack}
+            customAction={this.customAction}
           />
         }
         renderScene={this.renderScene}
