@@ -12,21 +12,27 @@ var {
 } = React;
 
 var Tweet = React.createClass({
+  
   goToTweet: function() {
-    this.props.onPress();
+    this.props.goToTweet(this.props);
   },
 
   render() {
+    var {
+      text,
+      user
+    } = this.props;
+
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.goToTweet}>
         <View style={styles.tweetContainer}>
-          <Image source={{uri: "https://pbs.twimg.com/profile_images/497658257276538880/KrPEaVDu_400x400.jpeg"}} style={styles.avatar} />
+          <Image source={{uri: user.avatar}} style={styles.avatar} />
           <View style={styles.rightContainer}>
             <View style={styles.userContainer}>
-              <Text style={styles.name}>Tristan Edwards</Text>
-              <Text style={styles.username}>@t4t5</Text>
+              <Text style={styles.name}>{user.name}</Text>
+              <Text style={styles.username}>@{user.username}</Text>
             </View>
-            <Text style={styles.text}>The React Native Router is awesome!</Text>
+            <Text style={styles.text}>{text}</Text>
           </View>
         </View>
       </TouchableHighlight>

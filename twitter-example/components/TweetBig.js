@@ -11,23 +11,29 @@ var {
 } = React;
 
 var TweetBig = React.createClass({
+
   render() {
+    var {
+      text,
+      user
+    } = this.props.data;
+
     return (
       <ScrollView>
         <View style={styles.tweetContainer}>
           <View style={styles.userContainer}>
-            <Image source={{uri: "https://pbs.twimg.com/profile_images/497658257276538880/KrPEaVDu_400x400.jpeg"}} style={styles.avatar} />
+            <Image source={{uri: user.avatar}} style={styles.avatar} />
             <View style={styles.rightContainer}>
-              <Text style={styles.name}>Tristan Edwards</Text>
-              <Text style={styles.username}>@t4t5</Text>
+              <Text style={styles.name}>{user.name}</Text>
+              <Text style={styles.username}>@{user.username}</Text>
             </View>
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.text}>The React Native Router is awesome!</Text>
+            <Text style={styles.text}>{text}</Text>
           </View>
           <View style={styles.retweetContainer}>
             <Text style={styles.rtBold}>1</Text>
-            <Text style={styles.rtText}>RETWEETS</Text>
+            <Text style={styles.rtText}>RETWEET</Text>
           </View>
         </View>
       </ScrollView>

@@ -91,6 +91,7 @@ var Router = React.createClass({
         <Content
           name={route.name}
           index={route.index}
+          data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
         />
