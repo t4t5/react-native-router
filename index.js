@@ -94,6 +94,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          route={route}
         />
       </View>
     )
