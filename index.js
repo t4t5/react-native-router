@@ -84,7 +84,7 @@ var Router = React.createClass({
     
     return (
       <View
-        style={styles.container}
+        style={[styles.container, this.props.bgStyle]}
         onStartShouldSetResponder={didStartDrag}
         onResponderMove={didMoveFinger}
         onResponderTerminationRequest={preventDefault}>
