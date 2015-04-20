@@ -40,6 +40,11 @@ var Router = React.createClass({
     navigator.push(route);
   },
 
+  openRoute: function(route) {
+    route.index = this.state.route.index + 1 || 1;
+    this.refs.navigator.push(route);
+  },
+
   customAction: function(opts) {
     this.props.customAction(opts);
   },
@@ -97,7 +102,6 @@ var Router = React.createClass({
         />
       </View>
     )
-    
   },
 
   render: function() {
@@ -106,6 +110,7 @@ var Router = React.createClass({
 
     return (
       <Navigator
+        ref="navigator"
         initialRoute={this.props.firstRoute}
         navigationBar={
           <NavBarContainer
