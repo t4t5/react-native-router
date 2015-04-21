@@ -55,6 +55,10 @@ var Router = React.createClass({
       this.onBack(navigator);
     }.bind(this);
 
+    var customAction = function(opts) {
+      this.customAction(opts);
+    }.bind(this);
+
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
@@ -94,6 +98,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          customAction={customAction}
         />
       </View>
     )
