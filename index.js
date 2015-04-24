@@ -62,8 +62,8 @@ var Router = React.createClass({
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
-        this.setState({ 
-          dragStartX: x, 
+        this.setState({
+          dragStartX: x,
           didSwitchView: false
         });
         return true;
@@ -85,7 +85,7 @@ var Router = React.createClass({
     };
 
     var Content = route.component;
-    
+
     return (
       <View
         style={[styles.container, this.props.bgStyle]}
@@ -102,7 +102,7 @@ var Router = React.createClass({
         />
       </View>
     )
-    
+
   },
 
   render: function() {
@@ -115,9 +115,10 @@ var Router = React.createClass({
         navigationBar={
           <NavBarContainer
             style={this.props.headerStyle}
-            navigator={navigator} 
+            navigator={navigator}
             currentRoute={this.state.route}
             backButtonComponent={this.props.backButtonComponent}
+            backButtonStyle={this.props.backButtonStyle}
             rightCorner={this.props.rightCorner}
             titleStyle={this.props.titleStyle}
             toRoute={this.onForward}
