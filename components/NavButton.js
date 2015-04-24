@@ -23,7 +23,8 @@ var NavButton = React.createClass({
       var BackButton = this.props.backButtonComponent;
       backButton = <View><BackButton /></View>
     } else {
-      backButton = <Text style={styles.navbarText}>Back</Text>
+      var hasBackButtonStyle = this.props.backButtonStyle;
+      backButton = <Text style={[styles.navbarText, hasBackButtonStyle && this.props.backButtonStyle]}>Back</Text>
     }
 
     return (
