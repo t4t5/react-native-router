@@ -53,14 +53,14 @@ var NavBarContent = React.createClass({
   },
 
   render() {
-    var transitionStyle = { 
+    var transitionStyle = {
       opacity: this.getTweeningValue('opacity'),
     };
 
     var leftCorner;
     var rightCorner;
     var titleComponent;
-    
+
 
     /**
      * Set leftCorner
@@ -72,7 +72,9 @@ var NavBarContent = React.createClass({
       var LeftCorner = this.props.route.leftCorner;
       leftCornerContent = <LeftCorner toRoute={this.goForward} customAction={this.customAction} />;
     } else if (this.props.route.index > 0) {
-      leftCornerContent = <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />;
+      leftCornerContent = <NavButton onPress={this.goBack}
+        backButtonComponent={this.props.backButtonComponent} 
+        backButtonStyle={this.props.backButtonStyle} />;
     }
 
     leftCorner = (
