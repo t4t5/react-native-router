@@ -60,6 +60,10 @@ var Router = React.createClass({
       this.onBack(navigator);
     }.bind(this);
 
+    var goToFirstRoute = function() {
+      navigator.popToTop()
+    };
+
     var customAction = function(opts) {
       this.customAction(opts);
     }.bind(this);
@@ -103,6 +107,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          reset={goToFirstRoute}
           customAction={customAction}
         />
       </View>
