@@ -25,7 +25,12 @@ var Router = React.createClass({
     }
   },
 
-  onWillFocus: function(route) {
+  /* 
+   * This changes the title in the navigation bar
+   * It should preferrably be called for "onWillFocus" instad >
+   * > but a recent update to React Native seems to break the animation
+   */
+  onDidFocus: function(route) {
     this.setState({ route: route });
   },
 
@@ -107,7 +112,12 @@ var Router = React.createClass({
 
   render: function() {
 
-    StatusBarIOS.setStyle(1);
+    // Status bar color
+    if (this.props.statusBarColor === "black") {
+      StatusBarIOS.setStyle(0);
+    } else {
+      StatusBarIOS.setStyle(1);
+    }
 
     return (
       <Navigator
@@ -126,7 +136,7 @@ var Router = React.createClass({
           />
         }
         renderScene={this.renderScene}
-        onWillFocus={this.onWillFocus}
+        onDidFocus={this.onDidFocus}
       />
     )
   }
