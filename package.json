@@ -1,6 +1,6 @@
 {
   "name": "react-native-router",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Awesome navigation for your native app.",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/t4t5/react-native-router",
   "dependencies": {
-    "react-native": "^0.4.0",
+    "react-native": "^0.4.x",
     "react-tween-state": "0.0.5"
   }
 }

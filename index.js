@@ -94,10 +94,16 @@ var Router = React.createClass({
     };
 
     var Content = route.component;
+
+    // Remove the margin of the navigation bar if not using navigation bar
+    var extraStyling = {};
+    if (this.props.hideNavigationBar) {
+      extraStyling.marginTop = 0;
+    }
     
     return (
       <View
-        style={[styles.container, this.props.bgStyle]}
+        style={[styles.container, this.props.bgStyle, extraStyling]}
         onStartShouldSetResponder={didStartDrag}
         onResponderMove={didMoveFinger}
         onResponderTerminationRequest={preventDefault}>
@@ -124,21 +130,27 @@ var Router = React.createClass({
       StatusBarIOS.setStyle(1);
     }
 
+    var navigationBar;
+
+    if (!this.props.hideNavigationBar) {
+      navigationBar = 
+      <NavBarContainer
+        style={this.props.headerStyle}
+        navigator={navigator} 
+        currentRoute={this.state.routeObj}
+        backButtonComponent={this.props.backButtonComponent}
+        rightCorner={this.props.rightCorner}
+        titleStyle={this.props.titleStyle}
+        toRoute={this.onForward}
+        toBack={this.onBack}
+        customAction={this.customAction}
+      />
+    }
+
     return (
       <Navigator
         initialRoute={this.props.firstRoute}
-        navigationBar={
-          <NavBarContainer
-            style={this.props.headerStyle}
-            currentRoute={this.state.route}
-            backButtonComponent={this.props.backButtonComponent}
-            rightCorner={this.props.rightCorner}
-            titleStyle={this.props.titleStyle}
-            toRoute={this.onForward}
-            toBack={this.onBack}
-            customAction={this.customAction}
-          />
-        }
+        navigationBar={navigationBar}
         renderScene={this.renderScene}
         onDidFocus={this.onDidFocus}
       />
