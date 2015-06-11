@@ -137,7 +137,7 @@ var Router = React.createClass({
       <NavBarContainer
         style={this.props.headerStyle}
         navigator={navigator} 
-        currentRoute={this.state.routeObj}
+        currentRoute={this.state.route}
         backButtonComponent={this.props.backButtonComponent}
         rightCorner={this.props.rightCorner}
         titleStyle={this.props.titleStyle}
