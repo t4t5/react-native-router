@@ -64,6 +64,10 @@ var Router = React.createClass({
       navigator.popToTop()
     };
 
+    var replaceRoute = function(route) {
+      navigator.route()
+    };
+
     var customAction = function(opts) {
       this.customAction(opts);
     }.bind(this);
@@ -113,6 +117,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          replace ={replaceRoute}
           reset={goToFirstRoute}
           customAction={customAction}
         />
