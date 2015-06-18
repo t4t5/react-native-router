@@ -117,7 +117,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
-          replace ={replaceRoute}
+          replace={replaceRoute}
           reset={goToFirstRoute}
           customAction={customAction}
         />
