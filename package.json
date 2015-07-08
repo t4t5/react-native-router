@@ -30,6 +30,6 @@
     "react-tween-state": "0.0.5"
   },
   "peerDependencies": {
-    "react-native": "^0.4.x"
+    "react-native": ">= 0.4"
   }
 }
