@@ -115,6 +115,7 @@ var Router = React.createClass({
           toBack={goBackwards}
           reset={goToFirstRoute}
           customAction={customAction}
+          {...route.passProps}
         />
       </View>
     )

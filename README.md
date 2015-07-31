@@ -114,6 +114,7 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `titleComponent`: Specify a component to replace the title. This could for example be your logo (as in the first page of the Instagram app)
 - `headerStyle`: change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
 - `data`: Send custom data to your route.
+- `passProps`: Takes in an object. Passes each `key: value` pair to your component as a prop. i.e. <Component key={value} />
 
 
 Todos
