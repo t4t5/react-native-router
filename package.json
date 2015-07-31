@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/t4t5/react-native-router",
   "dependencies": {
-    "react-native": "^0.4.x",
-    "react-tween-state": "0.0.5"
+    "react-native": "^0.8.x",
+    "react-tween-state": "^0.1.x"
   }
 }
