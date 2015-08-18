@@ -102,23 +102,30 @@ var NavBarContent = React.createClass({
      */
     var titleContent;
 
+    var routeName = this.props.route.name;
+
+    if (typeof routeName !== "undefined" && routeName !== null) {
+      if (routeName.length > 24) {
+        routeName = routeName.substring(0,21) + '...';
+      }
+    }
+
     if (this.props.route.titleComponent) {
       var TitleComponent = this.props.route.titleComponent;
       titleContent = <TitleComponent />;
     } else {
       titleContent = (
         <Text style={[styles.navbarText, this.props.titleStyle]}>
-          {this.props.route.name}
+          {routeName}
         </Text>
       );
     }
 
     titleComponent = (
-      <View>
+      <View style={{flex: 3}}>
         {titleContent}
       </View>
     );
-
 
     return (
       <View style={[styles.navbar, this.props.route.headerStyle, transitionStyle]}>
