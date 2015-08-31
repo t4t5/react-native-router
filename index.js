@@ -163,7 +163,7 @@ var Router = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
     marginTop: 64
   },
 });
