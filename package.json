@@ -1,6 +1,6 @@
 {
-  "name": "react-native-router",
-  "version": "0.2.1",
+  "name": "gb-native-router",
+  "version": "0.3.0",
   "description": "Awesome navigation for your native app.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/t4t5/react-native-router.git"
+    "url": "https://github.com/MikaelCarpenter/react-native-router.git"
   },
   "keywords": [
     "react",
@@ -20,14 +20,13 @@
     "navbar",
     "router"
   ],
-  "author": "Tristan Edwards <tristan.edwards@me.com> (http://tristanedwards.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/t4t5/react-native-router/issues"
+    "url": "https://github.com/MikaelCarpenter/react-native-router/issues"
   },
-  "homepage": "https://github.com/t4t5/react-native-router",
+  "homepage": "https://github.com/MikaelCarpenter/react-native-router",
   "dependencies": {
-    "react-native": "^0.8.x",
+    "react-native": "^0.10.x",
     "react-tween-state": "^0.1.x"
   }
 }
