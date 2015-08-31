@@ -148,7 +148,9 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 13
+    paddingTop: 13,
+    borderBottomWidth: 1,
+    borderColor: '#DADDE1'
   },
   navbarText: {
     color: 'white',
