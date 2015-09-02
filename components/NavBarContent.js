@@ -53,14 +53,14 @@ var NavBarContent = React.createClass({
   },
 
   render() {
-    var transitionStyle = { 
+    var transitionStyle = {
       opacity: this.getTweeningValue('opacity'),
     };
 
     var leftCorner;
     var rightCorner;
     var titleComponent;
-    
+
 
     /**
      * Set leftCorner
@@ -127,8 +127,13 @@ var NavBarContent = React.createClass({
       </View>
     );
 
+    if(this.props.route.trans === true)
+      var trans = { backgroundColor: 'transparent' };
+    else
+      var trans = {};
+
     return (
-      <View style={[styles.navbar, this.props.route.headerStyle, transitionStyle]}>
+      <View style={[styles.navbar, transitionStyle, this.props.route.headerStyle, trans]}>
         {leftCorner}
         {titleComponent}
         {rightCorner}

@@ -25,7 +25,7 @@ var Router = React.createClass({
     }
   },
 
-  /* 
+  /*
    * This changes the title in the navigation bar
    * It should preferrably be called for "onWillFocus" instad >
    * > but a recent update to React Native seems to break the animation
@@ -71,8 +71,8 @@ var Router = React.createClass({
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
-        this.setState({ 
-          dragStartX: x, 
+        this.setState({
+          dragStartX: x,
           didSwitchView: false
         });
         return true;
@@ -100,10 +100,15 @@ var Router = React.createClass({
     if (this.props.hideNavigationBar) {
       extraStyling.marginTop = 0;
     }
-    
+
+    if(route.trans === true)
+      var margin = 0
+    else
+      var margin = 64
+
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling]}
+        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}
         onStartShouldSetResponder={didStartDrag}
         onResponderMove={didMoveFinger}
         onResponderTerminationRequest={preventDefault}>
@@ -119,7 +124,7 @@ var Router = React.createClass({
         />
       </View>
     )
-    
+
   },
 
   render: function() {
@@ -134,10 +139,10 @@ var Router = React.createClass({
     var navigationBar;
 
     if (!this.props.hideNavigationBar) {
-      navigationBar = 
+      navigationBar =
       <NavBarContainer
         style={this.props.headerStyle}
-        navigator={navigator} 
+        navigator={navigator}
         currentRoute={this.state.route}
         backButtonComponent={this.props.backButtonComponent}
         rightCorner={this.props.rightCorner}
@@ -159,12 +164,10 @@ var Router = React.createClass({
   }
 });
 
-
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginTop: 64
+    backgroundColor: '#FFFFFF'
   },
 });
 

@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/MikaelCarpenter/react-native-router",
   "dependencies": {
-    "react-native": "^0.10.x",
+    "react-native": "^0.10.0",
     "react-tween-state": "^0.1.x"
   }
 }

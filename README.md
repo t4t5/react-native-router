@@ -1,8 +1,7 @@
 React Native Router
 ===================
 
-## Disclaimer
-This repo is a fork of t4t5/react-native-router that has additional improvements. I'll be using and sharing this as t4t5 doesn't seem to be maintaing his. If you have an issue or change you want to make add it to this repo and take care of it. Cheers!
+**DISCLAIMER** *This repo is a fork of t4t5/react-native-router that has additional improvements. I'll be using and sharing this as t4t5 doesn't seem to be maintaing his. If you have an issue or change you want to make add it to this repo and take care of it. Cheers!*
 
 Awesome navigation for your React Native app.
 
@@ -13,7 +12,7 @@ Install
 
 Make sure that you are in your React Native project directory and run:
 
-```npm install react-native-router --save```
+```npm install gb-native-router```
 
 Usage
 -----
@@ -117,16 +116,5 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `rightCorner`: Specify a component to render on the right side of the navigation bar
 - `titleComponent`: Specify a component to replace the title. This could for example be your logo (as in the first page of the Instagram app)
 - `headerStyle`: change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
-- `data`: Send custom data to your route.
 - `passProps`: Takes in an object. Passes each `key: value` pair to your component as a prop. i.e. <Component key={value} />
-
-
-Todos
------
-When swiping from left to right to go back, it would be nice if the navigation bar's opacity gradually changed with the user's finger position. (See [Issue #1](https://github.com/t4t5/react-native-router/issues/1))
-
-Questions?
----------
-
-If something is unclear or if you just want to say hi, feel free to [follow me on Twitter](https://twitter.com/t4t5)!
-
+- `trans`: if you set trans to `true` it will make the navbar transparent and move your component content so that it sits behind the nav.
