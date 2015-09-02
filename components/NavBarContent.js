@@ -128,7 +128,7 @@ var NavBarContent = React.createClass({
     );
 
     if(this.props.route.trans === true)
-      var trans = { backgroundColor: 'transparent' };
+      var trans = { backgroundColor: 'transparent', borderBottomWidth: 0 };
     else
       var trans = {};
 
