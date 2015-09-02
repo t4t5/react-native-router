@@ -1,5 +1,9 @@
 React Native Router
 ===================
+
+## Disclaimer
+This repo is a fork of t4t5/react-native-router that has additional improvements. I'll be using and sharing this as t4t5 doesn't seem to be maintaing his. If you have an issue or change you want to make add it to this repo and take care of it. Cheers!
+
 Awesome navigation for your React Native app.
 
 ![Twitter navigation](http://tristanedwards.me/u/react-native-router/native-router.gif)
