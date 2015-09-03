@@ -1,4 +1,4 @@
-React Native Router
+eact Native Router
 ===================
 
 **DISCLAIMER** *This repo is a fork of t4t5/react-native-router that has additional improvements. I'll be using and sharing this as t4t5 doesn't seem to be maintaing his. If you have an issue or change you want to make add it to this repo and take care of it. Cheers!*
@@ -118,3 +118,5 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `headerStyle`: change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
 - `passProps`: Takes in an object. Passes each `key: value` pair to your component as a prop. i.e. <Component key={value} />
 - `trans`: if you set trans to `true` it will make the navbar transparent and move your component content so that it sits behind the nav.
+- `leftCornerProps`: if you set a `leftCorner` component you can use this property to pass props to that component.
+- `rightCornerProps`: if you set a `rightCorner` component you can use this property to pass props to that component.
