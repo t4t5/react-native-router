@@ -45,6 +45,14 @@ var Router = React.createClass({
     navigator.push(route);
   },
 
+  setRightProps: function(props) {
+    this.setState({ rightProps: props });
+  },
+
+  setLeftProps: function(props) {
+    this.setState({ leftProps: props });
+  },
+
   customAction: function(opts) {
     this.props.customAction(opts);
   },
@@ -63,6 +71,14 @@ var Router = React.createClass({
     var goToFirstRoute = function() {
       navigator.popToTop()
     };
+
+    var setRightProps = function(props) {
+      this.setState({ rightProps: props });
+    }.bind(this);
+
+    var setLeftProps = function(props) {
+      this.setState({ leftProps: props });
+    }.bind(this);
 
     var customAction = function(opts) {
       this.customAction(opts);
@@ -119,6 +135,8 @@ var Router = React.createClass({
           toRoute={goForward}
           toBack={goBackwards}
           reset={goToFirstRoute}
+          setRightProps={setRightProps}
+          setLeftProps={setLeftProps}
           customAction={customAction}
           {...route.passProps}
         />
@@ -149,6 +167,8 @@ var Router = React.createClass({
         titleStyle={this.props.titleStyle}
         toRoute={this.onForward}
         toBack={this.onBack}
+        leftProps={this.state.leftProps}
+        rightProps={this.state.rightProps}
         customAction={this.customAction}
       />
     }

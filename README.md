@@ -120,3 +120,6 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `trans`: if you set trans to `true` it will make the navbar transparent and move your component content so that it sits behind the nav.
 - `leftCornerProps`: if you set a `leftCorner` component you can use this property to pass props to that component.
 - `rightCornerProps`: if you set a `rightCorner` component you can use this property to pass props to that component.
+
+The **`this.props.setRightProps`** and **`this.props.setLeftProps`** take in an object of props and sends that to your navbar's `RightComponent` and `LeftComponent`.
+- This allows you to talk directly to your navbar, because previously you could only talk to it when navigating forward or backward.

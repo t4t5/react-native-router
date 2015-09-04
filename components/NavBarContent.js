@@ -70,7 +70,7 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.leftCorner) {
       var LeftCorner = this.props.route.leftCorner;
-      leftCornerContent = <LeftCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.route.leftCornerProps} />;
+      leftCornerContent = <LeftCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.leftProps} {...this.props.route.leftCornerProps} />;
     } else if (this.props.route.index > 0) {
       leftCornerContent = <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />;
     }
@@ -88,7 +88,7 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.rightCorner || this.props.rightCorner) {
       var RightCorner = this.props.route.rightCorner || this.props.rightCorner;
-      rightCornerContent = <RightCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.route.rightCornerProps} />;
+      rightCornerContent = <RightCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.rightProps} {...this.props.route.rightCornerProps} />;
     }
 
     rightCorner = (
