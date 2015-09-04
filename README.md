@@ -12,7 +12,9 @@ Install
 
 Make sure that you are in your React Native project directory and run:
 
-```npm install gb-native-router```
+```$ npm install gb-native-router```
+```$ cd node_modules/gb-native-router```
+```$ npm install react-native```
 
 Usage
 -----
