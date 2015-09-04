@@ -5,7 +5,7 @@ React Native Router
 
 Awesome navigation for your React Native app.
 
-![Twitter navigation](http://tristanedwards.me/u/react-native-router/native-router.gif)
+![NavBar Example](http://cl.ly/image/1J2z2Y0L0J2R/Image%202015-09-04%20at%2010.32.07%20AM.png)
 
 Install
 -------
@@ -78,26 +78,6 @@ var HelloPage = React.createClass({
 
 Now, when you click on "Next page please!", it will go to the next page (which in this case is still HelloPage but with a new title). Keep in mind that ```this.props.toRoute()``` needs to be called from one of the top-level routes, therefore, if your link is deeply nested within multiple components, you need to make sure that the action "bubbles up" until it reaches the parent route, which in turn calls ```this.props.toRoute()```.
 
-
-A more advanced example: Twitter app
-------------------------------------
-
-To see more of the router in action, you can check out the Twitter example app that comes with the package. Just make sure that you first drag all the images from ```node_modules/react-native-router/twitter-example/images``` to your project's Images.xcassets:
-
-![Drag the assets to xcassets](http://tristanedwards.me/u/react-native-router/drag-assets.gif)
-
-After that, don't forget to rebuild the app in XCode before you launch the simulator. Then test the app by requiring the TwitterApp component:
-
-```javascript
-var TwitterApp = require('./node_modules/react-native-router/twitter-example');
-
-var {
-  AppRegistry
-} = React;
-
-AppRegistry.registerComponent('routerTest', () => TwitterApp);
-```
-
 Configurations
 --------------
 
@@ -123,3 +103,21 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 
 The **`this.props.setRightProps`** and **`this.props.setLeftProps`** take in an object of props and sends that to your navbar's `RightComponent` and `LeftComponent`.
 - This allows you to talk directly to your navbar, because previously you could only talk to it when navigating forward or backward.
+
+
+A more advanced example: Twitter app
+------------------------------------
+
+To see more of the router in action, you can check out the Twitter example app that comes with the package. Just make sure that you first drag all the images from ```node_modules/react-native-router/twitter-example/images``` to your project's Images.xcassets
+
+After that, don't forget to rebuild the app in XCode before you launch the simulator. Then test the app by requiring the TwitterApp component:
+
+```javascript
+var TwitterApp = require('./node_modules/react-native-router/twitter-example');
+
+var {
+  AppRegistry
+} = React;
+
+AppRegistry.registerComponent('routerTest', () => TwitterApp);
+```
