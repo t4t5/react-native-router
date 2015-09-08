@@ -64,6 +64,11 @@ var Router = React.createClass({
       navigator.push(route);
     }.bind(this);
 
+    var replaceRoute = function(route) {
+      route.index = this.state.route.index || 0;
+      navigator.replace(route);
+    }.bind(this);
+
     var goBackwards = function() {
       this.onBack(navigator);
     }.bind(this);
@@ -134,6 +139,7 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          replaceRoute={replaceRoute}
           reset={goToFirstRoute}
           setRightProps={setRightProps}
           setLeftProps={setLeftProps}
