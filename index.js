@@ -124,6 +124,8 @@ var Router = React.createClass({
 
     if(route.trans === true)
       var margin = 0
+    else if (this.props.hideNavigationBar === true)
+      var margin = 20
     else
       var margin = 64
 
