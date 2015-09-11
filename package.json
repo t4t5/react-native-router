@@ -1,7 +1,8 @@
 {
   "name": "gb-native-router",
-  "version": "0.3.0",
-  "description": "Awesome navigation for your native app.",
+  "version": "0.4.0",
+  "description": "Easy to use Navigator for your native app.",
+  "author": "Mikael Carpenter <mikaelcarp.dev@gmail.com>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,7 +27,9 @@
   },
   "homepage": "https://github.com/MikaelCarpenter/gb-native-router",
   "dependencies": {
-    "react-native": "^0.10.0",
     "react-tween-state": "^0.1.x"
+  },
+  "peerDependencies": {
+    "react-native": "^0.10.0"
   }
 }

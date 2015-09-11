@@ -1,7 +1,7 @@
 GB Native Router
 ===================
 
-**DISCLAIMER** *This repo is a fork of t4t5/react-native-router that has additional improvements. I'll be using and sharing this as t4t5 doesn't seem to be maintaing his. If you have an issue or change you want to make add it to this repo and take care of it. Cheers!*
+**DISCLAIMER** *This repo is a fork of t4t5/react-native-router that has additional improvements. I'll be using and sharing this as t4t5 is not maintaining his right now. If you have an issue or change you want to make add it to this repo and take care of it. Cheers!*
 
 Awesome navigation for your React Native app.
 
@@ -10,16 +10,10 @@ Awesome navigation for your React Native app.
 Install
 -------
 
-In `package.json` add `"gb-native-router": "https://github.com/MikaelCarpenter/gb-native-router.git"` to your dependencies
-
 Make sure that you are in your React Native project directory and run:
 
 
-```$ npm install gb-native-router```
-
-```$ cd node_modules/gb-native-router```
-
-```$ npm install react-native```
+```$ npm install gb-native-router --save```
 
 Usage
 -----
