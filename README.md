@@ -5,7 +5,7 @@ GB Native Router
 
 Awesome navigation for your React Native app.
 
-![NavBar Example](http://cl.ly/image/1J2z2Y0L0J2R/Image%202015-09-04%20at%2010.32.07%20AM.png)
+![NavBar Example](http://i.imgur.com/h5jUDC8.png)
 
 Install
 -------
