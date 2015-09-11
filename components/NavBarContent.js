@@ -132,8 +132,11 @@ var NavBarContent = React.createClass({
     else
       var trans = {};
 
+    var width = this.props.borderBottomWidth ? this.props.borderBottomWidth : 0;
+    var color = this.props.borderColor ? this.props.borderColor : null;
+
     return (
-      <View style={[styles.navbar, transitionStyle, this.props.route.headerStyle, trans]}>
+      <View style={[styles.navbar, transitionStyle, this.props.route.headerStyle,{borderBottomWidth: width, borderColor: color}, trans]}>
         {leftCorner}
         {titleComponent}
         {rightCorner}
@@ -153,9 +156,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 13,
-    borderBottomWidth: 1,
-    borderColor: '#DADDE1'
+    paddingTop: 13
   },
   navbarText: {
     color: 'white',
