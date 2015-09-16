@@ -1,6 +1,6 @@
 {
   "name": "gb-native-router",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Easy to use Navigator for your native app.",
   "author": "Mikael Carpenter <mikaelcarp.dev@gmail.com>",
   "main": "index.js",
