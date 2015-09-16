@@ -1,6 +1,6 @@
 {
   "name": "gb-native-router",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Easy to use Navigator for your native app.",
   "author": "Mikael Carpenter <mikaelcarp.dev@gmail.com>",
   "main": "index.js",
@@ -30,6 +30,6 @@
     "react-tween-state": "^0.1.x"
   },
   "peerDependencies": {
-    "react-native": "^0.10.0"
+    "react-native": "^0.11.0"
   }
 }
