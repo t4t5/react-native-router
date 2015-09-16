@@ -9,6 +9,7 @@ var {
   Navigator,
   StatusBarIOS,
   View,
+  Platform
 } = React;
 
 
