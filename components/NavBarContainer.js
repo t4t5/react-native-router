@@ -41,26 +41,36 @@ var NavBarContainer = React.createClass({
 
   // We render both the current and the previous navbar (for animation)
   render: function() {
+    if(this.props.currentRoute.trans === true)
+      var trans = {backgroundColor: 'transparent'}
+    else
+      var trans = {}
+
     return (
-      <View style={[styles.navbarContainer, this.props.style]}>
-        <NavBarContent 
-          route={this.state.previousRoute} 
+      <View style={[styles.navbarContainer, this.props.style, trans]}>
+        {this.props.currentRoute.trans
+          ?( <View /> )
+          :( <NavBarContent
+            route={this.state.previousRoute}
+            backButtonComponent={this.props.backButtonComponent}
+            rightCorner={this.props.rightCorner}
+            titleStyle={this.props.titleStyle}
+            willDisappear="true" /> )
+        }
+        <NavBarContent
+          route={this.props.currentRoute}
           backButtonComponent={this.props.backButtonComponent}
           rightCorner={this.props.rightCorner}
           titleStyle={this.props.titleStyle}
-          willDisappear="true" 
-        />
-        <NavBarContent 
-          route={this.props.currentRoute} 
-          backButtonComponent={this.props.backButtonComponent}
-          rightCorner={this.props.rightCorner}
-          titleStyle={this.props.titleStyle}
+          borderBottomWidth={this.props.borderBottomWidth}
+          borderColor={this.props.borderColor}
           goBack={this.goBack}
           goForward={this.goForward}
+          leftProps={this.props.leftProps}
+          rightProps={this.props.rightProps}
           customAction={this.customAction}
         />
-      </View>
-    )
+      </View>    )
   }
 });
 
@@ -71,8 +81,7 @@ var styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 64,
-    backgroundColor: '#5589B7'
+    height: 64
   }
 });
 

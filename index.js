@@ -9,6 +9,7 @@ var {
   Navigator,
   StatusBarIOS,
   View,
+  Platform
 } = React;
 
 
@@ -25,7 +26,7 @@ var Router = React.createClass({
     }
   },
 
-  /* 
+  /*
    * This changes the title in the navigation bar
    * It should preferrably be called for "onWillFocus" instad >
    * > but a recent update to React Native seems to break the animation
@@ -45,6 +46,14 @@ var Router = React.createClass({
     navigator.push(route);
   },
 
+  setRightProps: function(props) {
+    this.setState({ rightProps: props });
+  },
+
+  setLeftProps: function(props) {
+    this.setState({ leftProps: props });
+  },
+
   customAction: function(opts) {
     this.props.customAction(opts);
   },
@@ -56,6 +65,11 @@ var Router = React.createClass({
       navigator.push(route);
     }.bind(this);
 
+    var replaceRoute = function(route) {
+      route.index = this.state.route.index || 0;
+      navigator.replace(route);
+    }.bind(this);
+
     var goBackwards = function() {
       this.onBack(navigator);
     }.bind(this);
@@ -64,6 +78,14 @@ var Router = React.createClass({
       navigator.popToTop()
     };
 
+    var setRightProps = function(props) {
+      this.setState({ rightProps: props });
+    }.bind(this);
+
+    var setLeftProps = function(props) {
+      this.setState({ leftProps: props });
+    }.bind(this);
+
     var customAction = function(opts) {
       this.customAction(opts);
     }.bind(this);
@@ -71,8 +93,8 @@ var Router = React.createClass({
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
-        this.setState({ 
-          dragStartX: x, 
+        this.setState({
+          dragStartX: x,
           didSwitchView: false
         });
         return true;
@@ -100,10 +122,17 @@ var Router = React.createClass({
     if (this.props.hideNavigationBar) {
       extraStyling.marginTop = 0;
     }
-    
+
+    if(route.trans === true)
+      var margin = 0
+    else if (this.props.hideNavigationBar === true)
+      var margin = this.props.noStatusBar ? 0 : 20
+    else
+      var margin = 64
+
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling]}
+        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}
         onStartShouldSetResponder={didStartDrag}
         onResponderMove={didMoveFinger}
         onResponderTerminationRequest={preventDefault}>
@@ -113,36 +142,48 @@ var Router = React.createClass({
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          replaceRoute={replaceRoute}
           reset={goToFirstRoute}
+          setRightProps={setRightProps}
+          setLeftProps={setLeftProps}
           customAction={customAction}
+          {...route.passProps}
         />
       </View>
     )
-    
+
   },
 
   render: function() {
 
     // Status bar color
-    if (this.props.statusBarColor === "black") {
-      StatusBarIOS.setStyle(0);
-    } else {
-      StatusBarIOS.setStyle(1);
+    if (Platform.OS === 'ios') {
+      if (this.props.statusBarColor === "black") {
+        StatusBarIOS.setStyle(0);
+      } else {
+        StatusBarIOS.setStyle(1);
+      }
+    } else if (Platform.OS === 'android') {
+      // no android version yet
     }
 
     var navigationBar;
 
     if (!this.props.hideNavigationBar) {
-      navigationBar = 
+      navigationBar =
       <NavBarContainer
         style={this.props.headerStyle}
-        navigator={navigator} 
+        navigator={navigator}
         currentRoute={this.state.route}
         backButtonComponent={this.props.backButtonComponent}
         rightCorner={this.props.rightCorner}
         titleStyle={this.props.titleStyle}
+        borderBottomWidth={this.props.borderBottomWidth}
+        borderColor={this.props.borderColor}
         toRoute={this.onForward}
         toBack={this.onBack}
+        leftProps={this.state.leftProps}
+        rightProps={this.state.rightProps}
         customAction={this.customAction}
       />
     }
@@ -158,12 +199,10 @@ var Router = React.createClass({
   }
 });
 
-
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
-    marginTop: 64
+    backgroundColor: '#FFFFFF'
   },
 });
 

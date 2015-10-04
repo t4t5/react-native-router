@@ -53,14 +53,14 @@ var NavBarContent = React.createClass({
   },
 
   render() {
-    var transitionStyle = { 
+    var transitionStyle = {
       opacity: this.getTweeningValue('opacity'),
     };
 
     var leftCorner;
     var rightCorner;
     var titleComponent;
-    
+
 
     /**
      * Set leftCorner
@@ -70,7 +70,7 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.leftCorner) {
       var LeftCorner = this.props.route.leftCorner;
-      leftCornerContent = <LeftCorner toRoute={this.goForward} customAction={this.customAction} />;
+      leftCornerContent = <LeftCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.leftProps} {...this.props.route.leftCornerProps} />;
     } else if (this.props.route.index > 0) {
       leftCornerContent = <NavButton onPress={this.goBack} backButtonComponent={this.props.backButtonComponent} />;
     }
@@ -88,7 +88,7 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.rightCorner || this.props.rightCorner) {
       var RightCorner = this.props.route.rightCorner || this.props.rightCorner;
-      rightCornerContent = <RightCorner toRoute={this.goForward} customAction={this.customAction} />;
+      rightCornerContent = <RightCorner toRoute={this.goForward} customAction={this.customAction} {...this.props.rightProps} {...this.props.route.rightCornerProps} />;
     }
 
     rightCorner = (
@@ -107,21 +107,28 @@ var NavBarContent = React.createClass({
       titleContent = <TitleComponent />;
     } else {
       titleContent = (
-        <Text style={[styles.navbarText, this.props.titleStyle]}>
+        <Text style={[styles.navbarText, this.props.titleStyle]} numberOfLines={1}>
           {this.props.route.name}
         </Text>
       );
     }
 
     titleComponent = (
-      <View>
+      <View style={{flex: 3}}>
         {titleContent}
       </View>
     );
 
+    if(this.props.route.trans === true)
+      var trans = { backgroundColor: 'transparent', borderBottomWidth: 0 };
+    else
+      var trans = {};
+
+    var width = this.props.borderBottomWidth ? this.props.borderBottomWidth : 0;
+    var color = this.props.borderColor ? this.props.borderColor : null;
 
     return (
-      <View style={[styles.navbar, this.props.route.headerStyle, transitionStyle]}>
+      <View style={[styles.navbar, transitionStyle, this.props.route.headerStyle,{borderBottomWidth: width, borderColor: color}, trans]}>
         {leftCorner}
         {titleComponent}
         {rightCorner}
