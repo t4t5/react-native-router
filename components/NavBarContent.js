@@ -104,7 +104,7 @@ var NavBarContent = React.createClass({
 
     if (this.props.route.titleComponent) {
       var TitleComponent = this.props.route.titleComponent;
-      titleContent = <TitleComponent />;
+      titleContent = <TitleComponent name={this.props.route.name} />;
     } else {
       titleContent = (
         <Text style={[styles.navbarText, this.props.titleStyle]}>
