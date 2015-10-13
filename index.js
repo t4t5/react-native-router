@@ -45,6 +45,11 @@ var Router = React.createClass({
     route.index = this.state.route.index + 1 || 1;
     navigator.push(route);
   },
+  
+  replaceRoute: function(route) {
+    route.index = this.state.route.index + 0 || 0;
+    this.refs.navigator.replace(route);
+  },
 
   setRightProps: function(props) {
     this.setState({ rightProps: props });
@@ -190,6 +195,7 @@ var Router = React.createClass({
 
     return (
       <Navigator
+        ref="navigator"
         initialRoute={this.props.firstRoute}
         navigationBar={navigationBar}
         renderScene={this.renderScene}
