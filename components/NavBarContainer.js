@@ -68,6 +68,7 @@ var NavBarContainer = React.createClass({
           goForward={this.goForward}
           leftProps={this.props.leftProps}
           rightProps={this.props.rightProps}
+          titleProps={this.props.titleProps}
           customAction={this.customAction}
         />
       </View>    )

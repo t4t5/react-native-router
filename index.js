@@ -59,6 +59,10 @@ var Router = React.createClass({
     this.setState({ leftProps: props });
   },
 
+  setTitleProps: function(props) {
+    this.setState({ titleProps: props });
+  },
+
   customAction: function(opts) {
     this.props.customAction(opts);
   },
@@ -89,6 +93,10 @@ var Router = React.createClass({
 
     var setLeftProps = function(props) {
       this.setState({ leftProps: props });
+    }.bind(this);
+
+    var setTitleProps = function(props) {
+      this.setState({ titleProps: props });
     }.bind(this);
 
     var customAction = function(opts) {
@@ -151,6 +159,7 @@ var Router = React.createClass({
           reset={goToFirstRoute}
           setRightProps={setRightProps}
           setLeftProps={setLeftProps}
+          setTitleProps={setTitleProps}
           customAction={customAction}
           {...route.passProps}
         />
@@ -189,6 +198,7 @@ var Router = React.createClass({
         toBack={this.onBack}
         leftProps={this.state.leftProps}
         rightProps={this.state.rightProps}
+        titleProps={this.state.titleProps}
         customAction={this.customAction}
       />
     }
