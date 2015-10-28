@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/MikaelCarpenter/gb-native-router",
   "dependencies": {
-    "react-tween-state": "^0.1.x"
+    
   },
   "peerDependencies": {
     "react-native": "^0.12.0"
