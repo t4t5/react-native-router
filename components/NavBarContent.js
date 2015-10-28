@@ -31,7 +31,7 @@ var NavBarContent = React.createClass({
           {
             fromValue: this.props.willDisappear ? 1 : 0,
             toValue: this.props.willDisappear ? 0 : 1,
-            duration: 1000,
+            duration: 300,
             easing: Easing.easeOutQuad
           }
         ).start();
