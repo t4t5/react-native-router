@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react-native');
-var tweenState = require('react-tween-state'); // Animate header
+var Animated = require('Animated');
+var Easing = require('Easing');
 
 var NavButton = require('./NavButton');
 
@@ -14,8 +15,6 @@ var {
 
 var NavBarContent = React.createClass({
 
-  mixins: [tweenState.Mixin],
-
   getInitialState: function() {
     return {
       opacity: this.props.willDisappear ? 1 : 0
@@ -24,16 +23,18 @@ var NavBarContent = React.createClass({
 
   componentWillReceiveProps: function(newProps) {
     if (newProps.route !== this.props.route) {
-      this.setState({
-        opacity: this.props.willDisappear ? 1 : 0
-      });
+      this.state.opacity.setValue(this.props.willDisappear ? 1 : 0);
 
       setTimeout(() => {
-        this.tweenState('opacity', {
-          easing: tweenState.easingTypes.easeInOutQuad,
-          duration: 200,
-          endValue: 1
-        });
+        Animated.timing(
+          this.state.opacity,
+          {
+            fromValue: this.props.willDisappear ? 1 : 0,
+            toValue: this.props.willDisappear ? 0 : 1,
+            duration: 1000,
+            easing: Easing.easeOutQuad
+          }
+        ).start();
       }, 0);
     }
   },
@@ -54,7 +55,7 @@ var NavBarContent = React.createClass({
 
   render() {
     var transitionStyle = {
-      opacity: this.getTweeningValue('opacity'),
+      opacity: this.state.opacity,
     };
 
     var leftCorner;
@@ -128,11 +129,11 @@ var NavBarContent = React.createClass({
     var color = this.props.borderColor ? this.props.borderColor : null;
 
     return (
-      <View style={[styles.navbar, transitionStyle, this.props.route.headerStyle,{borderBottomWidth: width, borderColor: color}, trans]}>
+      <Animated.View style={[styles.navbar, transitionStyle, this.props.route.headerStyle,{borderBottomWidth: width, borderColor: color}, trans]}>
         {leftCorner}
         {titleComponent}
         {rightCorner}
-      </View>
+      </Animated.View>
     );
   }
 });
