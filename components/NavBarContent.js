@@ -17,7 +17,7 @@ var NavBarContent = React.createClass({
 
   getInitialState: function() {
     return {
-      opacity: this.props.willDisappear ? 1 : 0
+      opacity: this.props.willDisappear ? new Animated.Value(1) : new Animated.Value(0)
     };
   },
 
