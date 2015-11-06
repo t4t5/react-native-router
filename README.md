@@ -96,11 +96,21 @@ The **`this.props.toRoute()`** callback prop takes one parameter (a JavaScript o
 - `leftCorner`: Specify a component to render on the left side of the navigation bar (like the "Add people"-button on the first page of the Twitter app)
 - `rightCorner`: Specify a component to render on the right side of the navigation bar
 - `titleComponent`: Specify a component to replace the title. This could for example be your logo (as in the first page of the Instagram app)
-- `headerStyle`: change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
+- `headerStyle`: Change the style of your header for the new route. You could for example specify a new backgroundColor and the router will automatically make a nice transition from one color to the other!
 - `passProps`: Takes in an object. Passes each `key: value` pair to your component as a prop. i.e. <Component key={value} />
-- `trans`: if you set trans to `true` it will make the navbar transparent and move your component content so that it sits behind the nav.
-- `leftCornerProps`: if you set a `leftCorner` component you can use this property to pass props to that component.
-- `rightCornerProps`: if you set a `rightCorner` component you can use this property to pass props to that component.
+- `trans`: If you set trans to `true` it will make the navbar transparent and move your component content so that it sits behind the nav.
+- `leftCornerProps`: If you set a `leftCorner` component you can use this property to pass props to that component.
+- `rightCornerProps`: If you set a `rightCorner` component you can use this property to pass props to that component.
+- `sceneConfig`: Control the animation of the route being switched. Possible values are:
+  - Navigator.SceneConfigs.FadeAndroid
+  - Navigator.SceneConfigs.FloatFromBottom
+  - Navigator.SceneConfigs.FloatFromBottomAndroid
+  - Navigator.SceneConfigs.FloatFromLeft
+  - Navigator.SceneConfigs.FloatFromRight
+  - Navigator.SceneConfigs.HorizontalSwipeJump
+  - Navigator.SceneConfigs.PushFromRight
+  - Navigator.SceneConfigs.VerticalDownSwipeJump
+  - Navigator.SceneConfigs.VerticalUpSwipeJump
 
 The **`this.props.replaceRoute`**  takes in an object that can contain the same keys as `toRoute()`. The difference is that instead of adding a route to your stack, it replaces the route
 that you're on with the new route that you pass it.

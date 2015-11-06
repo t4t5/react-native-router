@@ -62,6 +62,10 @@ var Router = React.createClass({
     this.props.customAction(opts);
   },
 
+  configureScene: function(route) {
+    return route.sceneConfig || Navigator.SceneConfigs.FloatFromRight;
+  },
+
   renderScene: function(route, navigator) {
 
     var goForward = function(route) {
@@ -205,6 +209,7 @@ var Router = React.createClass({
         navigationBar={navigationBar}
         renderScene={this.renderScene}
         onWillFocus={this.onWillFocus}
+        configureScene={this.configureScene}
       />
     )
   }
