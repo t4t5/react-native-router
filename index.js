@@ -102,31 +102,6 @@ var Router = React.createClass({
       this.customAction(opts);
     }.bind(this);
 
-    var didStartDrag = function(evt) {
-      var x = evt.nativeEvent.pageX;
-      if (x < 28) {
-        this.setState({
-          dragStartX: x,
-          didSwitchView: false
-        });
-        return true;
-      }
-    }.bind(this);
-
-    // Recognize swipe back gesture for navigation
-    var didMoveFinger = function(evt) {
-      var draggedAway = ((evt.nativeEvent.pageX - this.state.dragStartX) > 30);
-      if (!this.state.didSwitchView && draggedAway) {
-        this.onBack(navigator);
-        this.setState({ didSwitchView: true });
-      }
-    }.bind(this);
-
-    // Set to false to prevent iOS from hijacking the responder
-    var preventDefault = function(evt) {
-      return true;
-    };
-
     var Content = route.component;
 
     // Remove the margin of the navigation bar if not using navigation bar
@@ -144,10 +119,7 @@ var Router = React.createClass({
 
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}
-        onStartShouldSetResponder={didStartDrag}
-        onResponderMove={didMoveFinger}
-        onResponderTerminationRequest={preventDefault}>
+        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}>
         <Content
           name={route.name}
           index={route.index}
