@@ -123,11 +123,13 @@ var Router = React.createClass({
 
   render: function() {
 
-    // Status bar color
-    if (this.props.statusBarColor === "black") {
-      StatusBarIOS.setStyle(0);
-    } else {
-      StatusBarIOS.setStyle(1);
+    // Status bar color, if on iOS
+    if (React.Platform.OS == 'ios') {
+      if (this.props.statusBarColor === "black") {
+        StatusBarIOS.setStyle(0);
+      } else {
+        StatusBarIOS.setStyle(1);
+      }
     }
 
     var navigationBar;
@@ -147,14 +149,26 @@ var Router = React.createClass({
       />
     }
 
-    return (
-      <Navigator
-        initialRoute={this.props.firstRoute}
-        navigationBar={navigationBar}
-        renderScene={this.renderScene}
-        onDidFocus={this.onDidFocus}
-      />
-    )
+    if (React.Platform.OS == 'ios') {
+      return (
+          <Navigator
+              initialRoute={this.props.firstRoute}
+              navigationBar={navigationBar}
+              renderScene={this.renderScene}
+              onDidFocus={this.onDidFocus}
+              />
+      );
+    } else {
+      return (
+          <Navigator
+              initialRoute={this.props.firstRoute}
+              configureScene={(route) => Navigator.SceneConfigs.FadeAndroid}
+              navigationBar={navigationBar}
+              renderScene={this.renderScene}
+              onDidFocus={this.onDidFocus}
+              />
+      );
+    }
   }
 });
 
