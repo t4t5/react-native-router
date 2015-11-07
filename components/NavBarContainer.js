@@ -73,7 +73,7 @@ var styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 64,
+    height: React.Platform.OS == 'ios' ? 64 : 48,
     backgroundColor: '#5589B7'
   }
 });

@@ -177,7 +177,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    marginTop: 64
+    marginTop: React.Platform.OS == 'ios' ? 64 : 48
   },
 });
 
