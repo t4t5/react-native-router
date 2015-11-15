@@ -23,10 +23,15 @@ var Router = React.createClass({
       },
       dragStartX: null,
       didSwitchView: null,
-    }
+    };
   },
 
-  onWillFocus: function(route) {
+  /*
+   * This changes the title in the navigation bar
+   * It should preferrably be called for "onWillFocus" instad >
+   * > but a recent update to React Native seems to break the animation
+   */
+  onDidFocus: function(route) {
     this.setState({ route: route });
   },
 
@@ -41,11 +46,6 @@ var Router = React.createClass({
     navigator.push(route);
   },
 
-  replaceRoute: function(route) {
-    route.index = this.state.route.index + 0 || 0;
-    this.refs.navigator.replace(route);
-  },
-
   setRightProps: function(props) {
     this.setState({ rightProps: props });
   },
@@ -54,16 +54,8 @@ var Router = React.createClass({
     this.setState({ leftProps: props });
   },
 
-  setTitleProps: function(props) {
-    this.setState({ titleProps: props });
-  },
-
   customAction: function(opts) {
     this.props.customAction(opts);
-  },
-
-  configureScene: function(route) {
-    return route.sceneConfig || Navigator.SceneConfigs.FloatFromRight;
   },
 
   renderScene: function(route, navigator) {
@@ -78,9 +70,9 @@ var Router = React.createClass({
       navigator.replace(route);
     }.bind(this);
 
-	  var resetToRoute = function(route) {
+    var resetToRoute = function(route) {
       route.index = 0;
-      navigator.replace(route);
+      navigator.resetTo(route);
     }.bind(this);
 
     var goBackwards = function() {
@@ -88,7 +80,7 @@ var Router = React.createClass({
     }.bind(this);
 
     var goToFirstRoute = function() {
-      navigator.popToTop()
+      navigator.popToTop();
     };
 
     var setRightProps = function(props) {
@@ -99,13 +91,34 @@ var Router = React.createClass({
       this.setState({ leftProps: props });
     }.bind(this);
 
-    var setTitleProps = function(props) {
-      this.setState({ titleProps: props });
-    }.bind(this);
-
     var customAction = function(opts) {
       this.customAction(opts);
     }.bind(this);
+
+    var didStartDrag = function(evt) {
+      var x = evt.nativeEvent.pageX;
+      if (x < 28) {
+        this.setState({
+          dragStartX: x,
+          didSwitchView: false
+        });
+        return true;
+      }
+    }.bind(this);
+
+    // Recognize swipe back gesture for navigation
+    var didMoveFinger = function(evt) {
+      var draggedAway = ((evt.nativeEvent.pageX - this.state.dragStartX) > 30);
+      if (!this.state.didSwitchView && draggedAway) {
+        this.onBack(navigator);
+        this.setState({ didSwitchView: true });
+      }
+    }.bind(this);
+
+    // Set to false to prevent iOS from hijacking the responder
+    var preventDefault = function(evt) {
+      return true;
+    };
 
     var Content = route.component;
 
@@ -115,16 +128,20 @@ var Router = React.createClass({
       extraStyling.marginTop = 0;
     }
 
+    var margin;
     if(route.trans === true)
-      var margin = 0
+      margin = 0;
     else if (this.props.hideNavigationBar === true)
-      var margin = this.props.noStatusBar ? 0 : 20
+      margin = this.props.noStatusBar ? 0 : 20;
     else
-      var margin = 64
+      margin = 64;
 
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}>
+        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}
+        onStartShouldSetResponder={didStartDrag}
+        onResponderMove={didMoveFinger}
+        onResponderTerminationRequest={preventDefault}>
         <Content
           name={route.name}
           index={route.index}
@@ -136,12 +153,11 @@ var Router = React.createClass({
           reset={goToFirstRoute}
           setRightProps={setRightProps}
           setLeftProps={setLeftProps}
-          setTitleProps={setTitleProps}
           customAction={customAction}
           {...route.passProps}
         />
       </View>
-    )
+    );
 
   },
 
@@ -175,21 +191,18 @@ var Router = React.createClass({
         toBack={this.onBack}
         leftProps={this.state.leftProps}
         rightProps={this.state.rightProps}
-        titleProps={this.state.titleProps}
         customAction={this.customAction}
       />
     }
 
     return (
       <Navigator
-        ref="navigator"
         initialRoute={this.props.firstRoute}
         navigationBar={navigationBar}
         renderScene={this.renderScene}
-        onWillFocus={this.onWillFocus}
-        configureScene={this.configureScene}
+        onDidFocus={this.onDidFocus}
       />
-    )
+    );
   }
 });
 
