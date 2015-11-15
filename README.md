@@ -116,6 +116,10 @@ The **`this.props.replaceRoute`**  takes in an object that can contain the same 
 that you're on with the new route that you pass it.
 - This is useful for login or signup screens. If you don't want your user to be able to navigate back to it, then use `replaceRoute()` rather than `toRoute()`.
 
+The **`this.props.resetToRoute`**  takes in an object that can contain the same keys as `toRoute()`. The difference is that instead of adding a route to your stack, it replaces the route
+that you're on with the new route that you pass it, and empties the navigation stack as well.
+- This is useful for going to an application after a login or signup screens. If you don't want your user to be able to navigate back to it, then use `resetToRoute()` rather than `replaceRoute()`.
+
 The **`this.props.setRightProps`** and **`this.props.setLeftProps`** take in an object of props and sends that to your navbar's `RightComponent` and `LeftComponent`.
 - This allows you to talk directly to your navbar, because previously you could only talk to it when navigating forward or backward.
 
