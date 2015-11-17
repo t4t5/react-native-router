@@ -17,11 +17,12 @@ var NavButton = React.createClass({
   },
 
   render() {
-    var backButton;
+    var backButton,
+      BackButton;
 
     if (this.props.backButtonComponent) {
-      var BackButton = this.props.backButtonComponent;
-      backButton = <View><BackButton /></View>
+      BackButton = this.props.backButtonComponent;
+      backButton = <View><BackButton/></View>
     } else {
       backButton = <Text style={styles.navbarText}>Back</Text>
     }
@@ -30,7 +31,7 @@ var NavButton = React.createClass({
       <TouchableHighlight onPress={this.onPress} underlayColor="transparent">
         {backButton}
       </TouchableHighlight>
-    )
+    );
   }
 });
 
