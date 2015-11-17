@@ -51,13 +51,13 @@ var NavBarContainer = React.createClass({
       trans = {};
     }
 
-	if (this.props.currentRoute.hideNavigationBar) {
+    if (this.props.currentRoute.hideNavigationBar) {
       navbarStyle = styles.navbarContainerHidden;
     } else {
       navbarStyle = styles.navbarContainer;
     }
 
-	if(this.props.currentRoute.trans) {
+    if(this.props.currentRoute.trans) {
       navbarContent = (
         <NavBarContent
         route={this.state.previousRoute}
