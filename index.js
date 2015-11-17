@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var EventEmitter = require('events').EventEmitter;
 
 var NavBarContainer = require('./components/NavBarContainer');
 
@@ -12,53 +13,52 @@ var {
   Platform
 } = React;
 
-
-var Router = React.createClass({
-
-  getInitialState: function() {
-    return {
+class Router extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
       route: {
         name: null,
         index: null
-      },
-      dragStartX: null,
-      didSwitchView: null,
+      }
     };
-  },
+    this.emitter = new EventEmitter();
+  }
 
   /*
    * This changes the title in the navigation bar
    * It should preferrably be called for "onWillFocus" instad >
    * > but a recent update to React Native seems to break the animation
    */
-  onDidFocus: function(route) {
+  onDidFocus(route) {
     this.setState({ route: route });
-  },
+    this.emitter.emit('didFocus', route.name);
+  }
 
-  onBack: function(navigator) {
+  onBack(navigator) {
     if (this.state.route.index > 0) {
       navigator.pop();
     }
-  },
+  }
 
-  onForward: function(route, navigator) {
+  onForward(route, navigator) {
     route.index = this.state.route.index + 1 || 1;
     navigator.push(route);
-  },
+  }
 
-  setRightProps: function(props) {
+  setRightProps(props) {
     this.setState({ rightProps: props });
-  },
+  }
 
-  setLeftProps: function(props) {
+  setLeftProps(props) {
     this.setState({ leftProps: props });
-  },
+  }
 
-  customAction: function(opts) {
+  customAction(opts) {
     this.props.customAction(opts);
-  },
+  }
 
-  renderScene: function(route, navigator) {
+  renderScene(route, navigator) {
 
     var goForward = function(route) {
       route.index = this.state.route.index + 1 || 1;
@@ -104,22 +104,24 @@ var Router = React.createClass({
     }
 
     var margin;
-    if(route.trans === true)
+    if(route.trans) {
       margin = 0;
-    else if (this.props.hideNavigationBar === true)
+    } else if (this.props.hideNavigationBar || route.hideNavigationBar) {
       margin = this.props.noStatusBar ? 0 : 20;
-    else
+    } else {
       margin = 64;
+    }
 
     return (
       <View
-        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}
+        style={[styles.container, this.props.bgStyle, extraStyling, {marginTop: margin}]}>
         <Content
           name={route.name}
           index={route.index}
           data={route.data}
           toRoute={goForward}
           toBack={goBackwards}
+          routeEmitter={this.emitter}
           replaceRoute={replaceRoute}
           resetToRoute={resetToRoute}
           reset={goToFirstRoute}
@@ -131,10 +133,10 @@ var Router = React.createClass({
       </View>
     );
 
-  },
+  }
 
-  render: function() {
-
+  render() {
+    var navigationBar;
     // Status bar color
     if (Platform.OS === 'ios') {
       if (this.props.statusBarColor === "black") {
@@ -145,8 +147,6 @@ var Router = React.createClass({
     } else if (Platform.OS === 'android') {
       // no android version yet
     }
-
-    var navigationBar;
 
     if (!this.props.hideNavigationBar) {
       navigationBar =
@@ -159,11 +159,11 @@ var Router = React.createClass({
         titleStyle={this.props.titleStyle}
         borderBottomWidth={this.props.borderBottomWidth}
         borderColor={this.props.borderColor}
-        toRoute={this.onForward}
-        toBack={this.onBack}
+        toRoute={this.onForward.bind(this)}
+        toBack={this.onBack.bind(this)}
         leftProps={this.state.leftProps}
         rightProps={this.state.rightProps}
-        customAction={this.customAction}
+        customAction={this.customAction.bind(this)}
       />
     }
 
@@ -171,12 +171,12 @@ var Router = React.createClass({
       <Navigator
         initialRoute={this.props.firstRoute}
         navigationBar={navigationBar}
-        renderScene={this.renderScene}
-        onDidFocus={this.onDidFocus}
+        renderScene={this.renderScene.bind(this)}
+        onDidFocus={this.onDidFocus.bind(this)}
       />
     );
   }
-});
+}
 
 var styles = StyleSheet.create({
   container: {
@@ -184,6 +184,5 @@ var styles = StyleSheet.create({
     backgroundColor: '#FFFFFF'
   },
 });
-
 
 module.exports = Router;
