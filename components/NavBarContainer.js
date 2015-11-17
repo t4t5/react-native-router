@@ -46,8 +46,7 @@ var NavBarContainer = React.createClass({
 
     if (this.props.currentRoute.trans) {
       trans = {backgroundColor: 'transparent'};
-    }
-    else {
+    } else {
       trans = {};
     }
 
