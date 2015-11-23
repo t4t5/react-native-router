@@ -55,7 +55,7 @@ class Router extends React.Component{
 
   setTitleProps(props) {
     this.setState({ titleProps: props });   
-  },
+  }
 
   customAction(opts) {
     this.props.customAction(opts);
