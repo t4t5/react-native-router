@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var EventEmitter = require('events').EventEmitter;
+var {EventEmitter} = require('fbemitter');
 
 var NavBarContainer = require('./components/NavBarContainer');
 
