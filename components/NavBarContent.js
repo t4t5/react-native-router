@@ -121,7 +121,7 @@ var NavBarContent = React.createClass({
 
 
     return (
-      <View style={[styles.navbar, this.props.route.headerStyle, transitionStyle]}>
+      <View style={[styles.navbar, this.props.style, this.props.route.headerStyle, transitionStyle]}>
         {leftCorner}
         {titleComponent}
         {rightCorner}
@@ -137,17 +137,17 @@ var styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 64, // Default iOS navbar height
+    height: React.Platform.OS == 'ios' ? 64 : 48, // Default iOS navbar height
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingTop: 13
+    paddingTop: React.Platform.OS == 'ios' ? 13 : 0
   },
   navbarText: {
     color: 'white',
     fontSize: 17,
     margin: 10,
-    marginTop: 14,
+    marginTop: React.Platform.OS == 'ios' ? 14 : 10,
     fontWeight: '600',
     textAlign: 'center',
     alignItems: 'center',

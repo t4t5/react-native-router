@@ -42,16 +42,18 @@ var NavBarContainer = React.createClass({
   // We render both the current and the previous navbar (for animation)
   render: function() {
     return (
-      <View style={[styles.navbarContainer, this.props.style]}>
+      <View style={styles.navbarContainer}>
         <NavBarContent 
-          route={this.state.previousRoute} 
+          route={this.state.previousRoute}
+          style={this.props.style}
           backButtonComponent={this.props.backButtonComponent}
           rightCorner={this.props.rightCorner}
           titleStyle={this.props.titleStyle}
           willDisappear="true" 
         />
         <NavBarContent 
-          route={this.props.currentRoute} 
+          route={this.props.currentRoute}
+          style={this.props.style}
           backButtonComponent={this.props.backButtonComponent}
           rightCorner={this.props.rightCorner}
           titleStyle={this.props.titleStyle}
@@ -71,7 +73,7 @@ var styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 64,
+    height: React.Platform.OS == 'ios' ? 64 : 48,
     backgroundColor: '#5589B7'
   }
 });

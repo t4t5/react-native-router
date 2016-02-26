@@ -2,6 +2,8 @@ React Native Router
 ===================
 Awesome navigation for your React Native app.
 
+** This is a React Native Router fix version. It can be used in Android project. **
+
 ![Twitter navigation](http://tristanedwards.me/u/react-native-router/native-router.gif)
 
 Install
@@ -9,7 +11,7 @@ Install
 
 Make sure that you are in your React Native project directory and run:
 
-```npm install react-native-router --save```
+```npm install react-native-router-fix --save```
 
 Usage
 -----

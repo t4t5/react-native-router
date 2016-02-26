@@ -68,6 +68,10 @@ var Router = React.createClass({
       this.customAction(opts);
     }.bind(this);
 
+    var isRootView = function() {
+      return this.state.route.index == 1;
+    }.bind(this);
+
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
@@ -114,6 +118,7 @@ var Router = React.createClass({
           toRoute={goForward}
           toBack={goBackwards}
           reset={goToFirstRoute}
+          isRootView={isRootView}
           customAction={customAction}
         />
       </View>
@@ -123,11 +128,13 @@ var Router = React.createClass({
 
   render: function() {
 
-    // Status bar color
-    if (this.props.statusBarColor === "black") {
-      StatusBarIOS.setStyle(0);
-    } else {
-      StatusBarIOS.setStyle(1);
+    // Status bar color, if on iOS
+    if (React.Platform.OS == 'ios') {
+      if (this.props.statusBarColor === "black") {
+        StatusBarIOS.setStyle(0);
+      } else {
+        StatusBarIOS.setStyle(1);
+      }
     }
 
     var navigationBar;
@@ -147,14 +154,26 @@ var Router = React.createClass({
       />
     }
 
-    return (
-      <Navigator
-        initialRoute={this.props.firstRoute}
-        navigationBar={navigationBar}
-        renderScene={this.renderScene}
-        onDidFocus={this.onDidFocus}
-      />
-    )
+    if (React.Platform.OS == 'ios') {
+      return (
+          <Navigator
+              initialRoute={this.props.firstRoute}
+              navigationBar={navigationBar}
+              renderScene={this.renderScene}
+              onDidFocus={this.onDidFocus}
+              />
+      );
+    } else {
+      return (
+          <Navigator
+              initialRoute={this.props.firstRoute}
+              configureScene={(route) => Navigator.SceneConfigs.FadeAndroid}
+              navigationBar={navigationBar}
+              renderScene={this.renderScene}
+              onDidFocus={this.onDidFocus}
+              />
+      );
+    }
   }
 });
 
@@ -163,7 +182,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    marginTop: 64
+    marginTop: React.Platform.OS == 'ios' ? 64 : 48
   },
 });
 
