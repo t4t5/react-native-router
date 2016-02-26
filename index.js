@@ -68,6 +68,10 @@ var Router = React.createClass({
       this.customAction(opts);
     }.bind(this);
 
+    var isRootView = function() {
+      return this.state.route.index == 1;
+    }.bind(this);
+
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
@@ -114,6 +118,7 @@ var Router = React.createClass({
           toRoute={goForward}
           toBack={goBackwards}
           reset={goToFirstRoute}
+          isRootView={isRootView}
           customAction={customAction}
         />
       </View>
