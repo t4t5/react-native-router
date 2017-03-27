@@ -98,7 +98,13 @@ var Router = React.createClass({
     // Remove the margin of the navigation bar if not using navigation bar
     var extraStyling = {};
     if (this.props.hideNavigationBar) {
-      extraStyling.marginTop = 0;
+      if (route.hideNavigationBar !== false) {
+          extraStyling.marginTop = 0;
+      }
+    } else {
+      if (route.hideNavigationBar) {
+        extraStyling.marginTop = 0;
+      }
     }
     
     return (
@@ -131,8 +137,15 @@ var Router = React.createClass({
     }
 
     var navigationBar;
+    var hideNavigationBar = this.props.hideNavigationBar;
+    
+    if (this.state.route.hideNavigationBar) {
+      hideNavigationBar = true;
+    } else if (this.state.route.hideNavigationBar === false) {
+      hideNavigationBar = false;
+    }
 
-    if (!this.props.hideNavigationBar) {
+    if (!hideNavigationBar) {
       navigationBar = 
       <NavBarContainer
         style={this.props.headerStyle}
