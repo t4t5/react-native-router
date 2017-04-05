@@ -28,5 +28,8 @@
   "homepage": "https://github.com/t4t5/react-native-router",
   "dependencies": {
     "react-tween-state": "0.0.5"
+  },
+  "peerDependencies": {
+    "react-native": ">= 0.4"
   }
 }
