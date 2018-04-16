@@ -2,7 +2,9 @@ React Native Router
 ===================
 Awesome navigation for your React Native app.
 
-![Twitter navigation](http://tristanedwards.me/u/react-native-router/native-router.gif)
+**NOTE: This project is deprecated. Please use [React Navigation](https://reactnavigation.org/) instead!**
+
+## Legacy instructions:
 
 Install
 -------
