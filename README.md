@@ -100,7 +100,7 @@ AppRegistry.registerComponent('routerTest', () => TwitterApp);
 Configurations
 --------------
 
-The **`<Router \>`** object used to initialize the navigation can take the following props:
+The **`<Router />`** object used to initialize the navigation can take the following props:
 - `firstRoute` (required): A React class corresponding to the first page of your navigation
 - `headerStyle`: Apply a StyleSheet to the navigation bar. You'll probably want to change the backgroundColor for example.
 - `titleStyle`: Apply a StyleSheet to the navigation bar titles. Useful for changing the font or text color.
