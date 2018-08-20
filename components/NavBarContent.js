@@ -23,16 +23,19 @@ var NavBarContent = React.createClass({
   },
 
   componentWillReceiveProps: function(newProps) {
+    var beginOpacity = this.props.willDisappear ? 1 : 0;
+    var endOpacity = this.props.willDisappear ? 0 : 1;
+
     if (newProps.route !== this.props.route) {
       this.setState({
-        opacity: this.props.willDisappear ? 1 : 0
+        opacity: beginOpacity
       });
 
       setTimeout(() => {
         this.tweenState('opacity', {
           easing: tweenState.easingTypes.easeInOutQuad,
           duration: 200,
-          endValue: 1
+          endValue: endOpacity
         });
       }, 0);
     }
