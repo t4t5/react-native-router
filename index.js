@@ -9,10 +9,32 @@ var {
   Navigator,
   StatusBarIOS,
   View,
+  PropTypes,
 } = React;
 
 
 var Router = React.createClass({
+  propTypes: {
+    onWillFocus: PropTypes.func,
+    onDidFocus: PropTypes.func,
+    customAction: PropTypes.func,
+    hideNavigationBar: PropTypes.bool,
+    bgStyle: PropTypes.any,
+    statusBarColor: PropTypes.string,
+    headerStyle: PropTypes.any,
+    backButtonComponent: PropTypes.any,
+    rightCorner: PropTypes.any,
+    titleStyle: PropTypes.any,
+    firstRoute: PropTypes.object,
+  },
+
+  getDefaultProps: function() {
+    return {
+      onWillFocus: () => {},
+      onDidFocus: () => {},
+      hideNavigationBar: false,
+    }
+  },
 
   getInitialState: function() {
     return {
@@ -25,13 +47,18 @@ var Router = React.createClass({
     }
   },
 
-  /* 
+  onWillFocus: function(route) {
+    this.props.onWillFocus(route);
+  },
+
+  /*
    * This changes the title in the navigation bar
    * It should preferrably be called for "onWillFocus" instad >
    * > but a recent update to React Native seems to break the animation
    */
   onDidFocus: function(route) {
     this.setState({ route: route });
+    this.props.onDidFocus(route);
   },
 
   onBack: function(navigator) {
@@ -71,8 +98,8 @@ var Router = React.createClass({
     var didStartDrag = function(evt) {
       var x = evt.nativeEvent.pageX;
       if (x < 28) {
-        this.setState({ 
-          dragStartX: x, 
+        this.setState({
+          dragStartX: x,
           didSwitchView: false
         });
         return true;
@@ -100,7 +127,7 @@ var Router = React.createClass({
     if (this.props.hideNavigationBar) {
       extraStyling.marginTop = 0;
     }
-    
+
     return (
       <View
         style={[styles.container, this.props.bgStyle, extraStyling]}
@@ -118,7 +145,7 @@ var Router = React.createClass({
         />
       </View>
     )
-    
+
   },
 
   render: function() {
@@ -133,10 +160,10 @@ var Router = React.createClass({
     var navigationBar;
 
     if (!this.props.hideNavigationBar) {
-      navigationBar = 
+      navigationBar =
       <NavBarContainer
         style={this.props.headerStyle}
-        navigator={navigator} 
+        navigator={navigator}
         currentRoute={this.state.route}
         backButtonComponent={this.props.backButtonComponent}
         rightCorner={this.props.rightCorner}
@@ -153,6 +180,7 @@ var Router = React.createClass({
         navigationBar={navigationBar}
         renderScene={this.renderScene}
         onDidFocus={this.onDidFocus}
+        onWillFocus={this.onWillFocus}
       />
     )
   }
