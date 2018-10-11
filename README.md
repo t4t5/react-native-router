@@ -1,5 +1,8 @@
 React Native Router
 ===================
+
+Please see [Issue #75](https://github.com/t4t5/react-native-router/issues/75) before continuing.
+
 Awesome navigation for your React Native app.
 
 **NOTE: This project is deprecated. Please use [React Navigation](https://reactnavigation.org/) instead!**
