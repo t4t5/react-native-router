@@ -114,7 +114,7 @@ var NavBarContent = React.createClass({
     }
 
     titleComponent = (
-      <View>
+      <View style={styles.title}>
         {titleContent}
       </View>
     );
@@ -155,6 +155,9 @@ var styles = StyleSheet.create({
   corner: {
     flex: 1,
     justifyContent: 'center',
+  },
+  title: {
+    flex: 100
   },
 
   alignLeft: {
